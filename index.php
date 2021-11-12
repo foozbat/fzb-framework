@@ -10,17 +10,16 @@ namespace Fzb\Framework;
 
 error_reporting(E_ALL);
 
-// class autoloader
-require_once("autoload.php");
-
 // app specific initialization
 require_once("appinit.php");
 
+// class autoloader
+require_once("autoload.php");
+
+
 // global variables
 
-// locate all developer created modules
-//find_modules($MODULES, __DIR__.'/modules');
-$router = new Router('fzbrt', __DIR__.'/modules');
+$router = new Router();
 
 
 

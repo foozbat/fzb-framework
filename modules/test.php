@@ -30,4 +30,4 @@ print_r("<pre>");
 print_r($_GET);
 print_R("</pre>");
 
-$renderer->test();
+$renderer->display("test");

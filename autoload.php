@@ -12,6 +12,7 @@ spl_autoload_register("load_class");
 // PSR-4 compliant autoloader
 function load_class($fqcn)
 {
+    GLOBAL $CLASSES_DIR;
 /*/    $fqcn_components = explode("\\", strtolower($fqcn));
     
     //print_r($fqcn_components);
@@ -24,7 +25,7 @@ function load_class($fqcn)
 */
     $fqcn = strtolower($fqcn);
     $fqcn = str_replace('\\', '/', $fqcn);
-    $fqcn_path = __DIR__ . "/classes/" . $fqcn . ".class.php";
+    $fqcn_path = $CLASSES_DIR . "/" . $fqcn . ".class.php";
     //print_r($fqcn_path);
 
     if (file_exists($fqcn_path))
