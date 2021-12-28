@@ -14,12 +14,12 @@ $inputs   = new Inputs([
     ],
     'email' => [
         'required' => true,
-        'type' => 'GET',
+        'type' => 'POST',
         'validate' => FILTER_VALIDATE_EMAIL,
     ],
     'text' => [
         'required' => true,
-        'type' => 'GET',
+        'type' => 'POST',
         'validate' => FILTER_SANITIZE_SPECIAL_CHARS,
     ],
     'bool_option' => [
