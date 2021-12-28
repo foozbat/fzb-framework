@@ -7,7 +7,7 @@
 	description:  handles routing to app modules based on URL paths
 */
 
-namespace Fzb\Framework;
+namespace Fzb;
 
 class Router
 {
@@ -17,16 +17,13 @@ class Router
     private $modules = array();
     private $module_params;
 
-    function __construct(/*$route_param, $modules_dir*/)
+    function __construct($modules_dir)
     {
-        GLOBAL $MODULES_DIR;
-
-        $this->find_modules($MODULES_DIR);
-        $this->route();
+        $this->find_modules($modules_dir);
     }
 
     // routes to the proper module based on uri path
-    private function route()
+    public function route()
     {
         // get the first element of the path and exclude params
         $local_path = getenv("SCRIPT_NAME");

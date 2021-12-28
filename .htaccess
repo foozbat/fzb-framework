@@ -4,6 +4,20 @@
 #RewriteCond %{REQUEST_FILENAME} !-f
 
 #RewriteRule ^(.*)$ index.php?fzbrt=$1 [L,QSA]
+<Files autoload.php,appinit.php,wsindex.sh>
+order allow,deny
+Deny from all
+</Files>
+
+<Files appinit.php>
+order allow,deny
+Deny from all
+</Files>
+
+<Files *.ini>
+order allow,deny
+Deny from all
+</Files>
 
 RewriteEngine on
 RewriteCond %{SCRIPT_FILENAME} !-f

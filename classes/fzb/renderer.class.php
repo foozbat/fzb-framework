@@ -3,15 +3,16 @@
 	file:         renderer.class.php
 	type:         Class Definition
 	written by:   Aaron Bishop
-	date:         12/24/2005
 	description:  This class contains handles the assignment of render variables and the displaying of templates
 */
 
-namespace Fzb\Framework;
+namespace Fzb;
 
 class Renderer
 {
 	// DATA MEMBERS //
+	private $template_dir;
+	private $template_ext;
 
 	private $render_vars;
 	private $selects;
@@ -19,9 +20,25 @@ class Renderer
 	private $texts;
 
 	// CONSTRUCTOR //
-
-	function __construct()
+	function __construct($template_dir = "", $template_ext = "")
 	{
+		if ($template_dir != "") {
+			$this->template_dir = $template_dir;
+		} else if (defined('TEMPLATES_DIR')) {
+			$this->template_dir = TEMPLATES_DIR;
+		}
+
+		if ($template_ext != "") {
+			$this->template_ext = $template_ext;
+		} else if (defined('TEMPLATE_EXT')) {
+			$this->template_ext = TEMPLATE_EXT;
+		}
+
+		if ($this->template_dir == "" || $this->template_ext == "") {
+			die ("could not create renderer");
+		}
+
+
 		$this->selects = array();
 		$this->checks = array();
 		$this->texts = array();
@@ -56,14 +73,14 @@ class Renderer
 	// renders and displays a specified page
 	public function display($page)
 	{
-		global $settings;
+		//global $settings;
 
 		// start output buffering
-		if ($settings->get_value('use_gzip')) {
-			ob_start('ob_gzhandler');
-		} else {
+		//if ($settings->get_value('use_gzip')) {
+		//	ob_start('ob_gzhandler');
+		//} else {
 			ob_start();
-		}
+		//}
 
 		// do rendering
 		$this->render($page);
@@ -75,9 +92,7 @@ class Renderer
 	// internal function for the rendering of pages.  do not call this function directly!  use display()
 	private function render($page)
 	{
-		global $settings;
-
-		$bm = new Benchmark('rendering');
+		//$bm = new Benchmark('rendering');
 
 		// create a local variable for each render var
 		extract($this->render_vars, EXTR_SKIP);
@@ -92,18 +107,17 @@ class Renderer
 
 		error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
-		$template_file = __DIR__.'templates/template_'.$page.'.php';
+		$template_file = $this->template_dir.'/'.$page.'.'.$this->template_ext;
 
 		if (file_exists($template_file)) {
 			require_once($template_file);
 		} else {
-			$cannot_find_template = 1;
-			require_once(__DIR__.'templates/template_error.php');
+			die("template not found");
 		}
 
-		error_reporting(E_ALL);
+		//error_reporting(E_ALL);
 
-		$bm->end_bench();
+		//$bm->end_bench();
 	}
 
 	// renders the page and returns output as a string instead of sending to the browser
