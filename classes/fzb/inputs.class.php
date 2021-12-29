@@ -24,18 +24,23 @@ class InputDefinitionException extends Exception { }
 class Inputs implements ArrayAccess
 {
     private $inputs = array();
+    private $path_vars = array();
 
     // constructor can optionally receive an array of input definitions
-    public function __construct($inputs = null)
+    public function __construct(array $inputs = null)
     {
-        GLOBAL $_GET;
         // check to see if this is a websocket connection
         if (strpos($_SERVER['GATEWAY_INTERFACE'], 'websocketd-CGI') !== false) {
+            GLOBAL $_GET;
             $_GET = array();
             parse_str($_SERVER['QUERY_STRING'], $_GET);
         }
 
-        //
+        $this->add_inputs($inputs);
+    }
+
+    public function add_inputs($inputs)
+    {
         if (isset($inputs)) {
             if (is_array($inputs)) {
                 foreach ($inputs as $name => $properties) {
@@ -43,7 +48,7 @@ class Inputs implements ArrayAccess
                     $this[$name] = $properties;
                 }
             }
-        }
+        }        
     }
 
     public function validate()
@@ -75,7 +80,28 @@ class Inputs implements ArrayAccess
         if (is_null($input_name) || is_null($properties)) {
             throw new InputDefinitionException('Invalid input parameters.');
         } else if ($input_name == '_path_scheme') {
-            //
+            //print getenv("SCRIPT_NAME");
+            
+            //print "URI: ".$_SERVER['REQUEST_URI']."<br />";
+            //print "ROUTE: ".$_ENV['URL_ROUTE']."<br />";
+
+            $path_string = explode($_ENV['URL_ROUTE'], $_SERVER['REQUEST_URI'], 2)[1];
+            $path_string = ltrim($path_string, "/");
+
+            //print_r($path);
+
+            $path_var_values = explode("/", $path_string);
+            $path_var_names  = explode("/", $properties);
+
+            //print_r($path_var_values);
+
+            for ($i=0; $i<sizeof($path_var_names); $i++) {
+                $this->path_vars[$path_var_names[$i]] = $path_var_values[$i] ?? null;
+            }
+
+            //print_r($this->path_vars);
+            //print $path;
+
         } else if (!is_array($properties)) {
             throw new InputDefinitionException('Cannot assign a value to an input directly, use an array to define input parameters.');
         } else {
@@ -95,8 +121,8 @@ class Inputs implements ArrayAccess
                 $input_value = $_GET[$input_name];
             } else if ($input_type == 'POST' && isset($_POST[$input_name])) {
                 $input_value = $_POST[$input_name];
-            } else if ($input_type == 'PATH') {
-
+            } else if ($input_type == 'PATH'&& isset($this->path_vars[$input_name])) {
+                $input_value = $this->path_vars[$input_name];
             }
 
             $submitted_value = $input_value;

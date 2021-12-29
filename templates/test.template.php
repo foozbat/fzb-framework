@@ -22,9 +22,14 @@ email: <?= $email ?><br />
 text: <?= $text ?><br />
 bool_option: <?= $bool_option ?><br />
 optional_thing: <?= $optional_thing ?><br />
+<br />
+year: <?= $year ?><br />
+month: <?= $month ?><br />
+day: <?= $day ?><br />
 
-<form action="/fzb-framework/test" method="POST">
-    Text: <input type="text" name="text">
-    Email: <input type="text" name="email">
-    <input type="submit">
-    </form>
+<form action="/fzb-framework/test?id=<?= $id ?>" method="POST">
+Text: <input type="text" name="text"><br />
+Email: <input type="text" name="email"><br />
+Check: <input type="checkbox" name="bool_option"><br />
+<input type="submit">
+</form>

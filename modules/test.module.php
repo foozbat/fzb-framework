@@ -1,12 +1,17 @@
 <?php
+namespace myapp;
 
 use Fzb\Renderer;
 use Fzb\Inputs;
 
 $renderer = new Renderer();
 
+
 $inputs   = new Inputs([
-    '_path_scheme' => "[module]/[month]/[year]",
+    '_path_scheme' => "year/month/day",
+]);
+
+$inputs->add_inputs([
     'id' => [
         'required' => true,
         'type' => 'GET',
@@ -24,13 +29,22 @@ $inputs   = new Inputs([
     ],
     'bool_option' => [
         'required' => true,
-        'type' => 'GET',
+        'type' => 'POST',
         'validate' => FILTER_VALIDATE_BOOLEAN,
     ],
     'month' => [
-        'required' => false,
+        'required' => true,
         'type' => 'PATH'
-    ]
+    ],
+    'year' => [
+        'required' => true,
+        'type' => 'PATH'
+    ],
+    'day' => [
+        'required' => true,
+        'type' => 'PATH'
+    ]    
+
 ]);
 
 $inputs['optional_thing'] = [
@@ -43,7 +57,7 @@ $inputs['optional_thing2'] = [];
 
 try {
     $inputs->validate();
-} catch (Fzb\InputValidationException $e) {
+} catch (\Fzb\InputValidationException $e) {
     $renderer->assign('validation_error', true);
     $renderer->assign('required_failures', $e->required_failures);
     $renderer->assign('validation_failures', $e->validation_failures);
@@ -64,6 +78,8 @@ $renderer->assign('text', $inputs['text']);
 $renderer->assign('bool_option', $inputs['bool_option']);
 $renderer->assign('optional_thing', $inputs['optional_thing']);
 
-
+$renderer->assign('month', $inputs['month']);
+$renderer->assign('day', $inputs['day']);
+$renderer->assign('year', $inputs['year']);
 
 $renderer->display("test");
