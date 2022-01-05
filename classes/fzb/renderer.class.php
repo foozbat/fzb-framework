@@ -8,6 +8,10 @@
 
 namespace Fzb;
 
+use Exception;
+
+class RendererException extends Exception { }
+
 class Renderer
 {
 	// DATA MEMBERS //
@@ -15,6 +19,8 @@ class Renderer
 	private $template_ext;
 
 	private $render_vars;
+	private $reserved_var_names = ['_vars', 'html'];
+
 	private $selects;
 	private $checks;
 	private $texts;
@@ -47,21 +53,21 @@ class Renderer
 
 	// METHODS //
 
-	public function test()
-	{
-		echo __NAMESPACE__;
-	}
-
 	public function assign($name, $value)
 	{
+		if (in_array($name, $this->reserved_var_names)) {
+			throw new RendererException("$name is a reserved Renderer variable name");
+		}
 		$this->render_vars[$name] = $value;
 	}
 
+	// possibly deprecate
 	public function define_loop($name)
 	{
 		$this->render_vars[$name] = array();
 	}
 
+	// possibly deprecate
 	public function add_loop_row($name, $value)
 	{
 		if (!isset($this->render_vars[$name])) {
@@ -94,12 +100,8 @@ class Renderer
 	{
 		//$bm = new Benchmark('rendering');
 
-		// create a local variable for each render var
-		extract($this->render_vars, EXTR_SKIP);
-
-		$r = &$this;
-	
 		// send nifty no cache headers
+		// probably change this
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		header('Cache-Control: no-store, no-cache, must-revalidate');
 		header('Cache-Control: post-check=0, pre-check=0', FALSE);
@@ -109,11 +111,8 @@ class Renderer
 
 		$template_file = $this->template_dir.'/'.$page.'.'.$this->template_ext;
 
-		if (file_exists($template_file)) {
-			require_once($template_file);
-		} else {
-			die("template not found");
-		}
+		// call helper functions to isolate scope of template from this class
+		_load_tpl($template_file, $this->render_vars);
 
 		//error_reporting(E_ALL);
 
@@ -234,5 +233,25 @@ class Renderer
 		echo '<textarea name="'.$name.'" rows="'.$rows.'" cols="'.$cols.'" '.$extraparams.'>';
 		echo $text;
 		echo '</textarea>';
+	}
+
+	private function checkbox_checked($value) {
+		if ($value) {
+			echo "checked";
+		}
+	}
+}
+
+// helper function to isolate the template scope from the rest of the class
+function _load_tpl($template_file, $_vars)
+{
+	// create a local variable for each render var
+	extract($_vars, EXTR_SKIP);
+	unset($_vars);
+
+	if (file_exists($template_file)) {
+		require_once($template_file);
+	} else {
+		die("template not found");
 	}
 }

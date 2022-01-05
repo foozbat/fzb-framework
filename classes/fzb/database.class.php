@@ -1,6 +1,6 @@
 <?php
 /* 
-	file:         input.class.php
+	file:         database.class.php
 	type:         Class Definition
 	written by:   Aaron Bishop
 	description:  
@@ -29,20 +29,27 @@ class Database
     public function __construct($options = array())
     {
         if (isset($options['ini_file'])) {
-            $ini_settings = parse_ini_file($options['ini_file'], true);
+            if (file_exists($options['ini_file'])) {
+                $ini_settings = parse_ini_file($options['ini_file'], true);
+            } else {
+                throw new DatabaseConnectException("Could not find .ini with database credentials");
+            }
+            
 
             $options = $ini_settings['database'];
 
             //print_r($options);
         }
 
-        if (!isset($options['driver']) || !isset($options['host']) || !isset($options['username']) || !isset($options['password']) || !isset($options['database'])) { 
+        if (!isset($options['driver']) || !isset($options['host']) || !isset($options['username']) || !isset($options['password'])) { 
             throw new DatabaseConnectException("Database host, username, or password not specified");
         }
 
         $this->conn_options = $options;
         
         $this->connect();
+
+        $GLOBALS['FZB_DATABASE_OBJECT'] = $this;
     }
 
     // DESTRUCTOR //
@@ -98,7 +105,7 @@ class Database
  	// executes a query and returns the first row of the result as a normal array
     function selectrow_array()
 	{
-
+        print "selectrow_array()<br />";
     }
 
     // executes a query and returns the first row of the result as an associative array

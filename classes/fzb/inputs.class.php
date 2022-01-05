@@ -75,9 +75,9 @@ class Inputs implements ArrayAccess
     }
 
     // ArrayAccess Methods
-    public function offsetSet($input_name, $properties)
+    public function offsetSet($input_name, $properties = null)
     {
-        if (is_null($input_name) || is_null($properties)) {
+        if (is_null($input_name)) {
             throw new InputDefinitionException('Invalid input parameters.');
         } else if ($input_name == '_path_scheme') {
             //print getenv("SCRIPT_NAME");
@@ -102,7 +102,7 @@ class Inputs implements ArrayAccess
             //print_r($this->path_vars);
             //print $path;
 
-        } else if (!is_array($properties)) {
+        } else if (!is_array($properties) && $properties != null) {
             throw new InputDefinitionException('Cannot assign a value to an input directly, use an array to define input parameters.');
         } else {
             // set default values
@@ -137,7 +137,15 @@ class Inputs implements ArrayAccess
                     array('options' => $filter_options, 'flags' => $filter_flags)
                 );
 
+                if ($input_validate == FILTER_VALIDATE_BOOLEAN) {
+                    //print "itsabool";
+                    $input_value = $input_value ?? false;
+                    //print var_dump($input_value);
+                }
+
                 $input_validated = ($input_value !== null);
+
+                //print var_dump($input_validated);
             }
 
             // sanitize the input according to filter

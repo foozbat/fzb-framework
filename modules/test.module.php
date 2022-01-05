@@ -1,50 +1,29 @@
 <?php
-namespace myapp;
+/* 
+	file:       test.module.php
+	type:       Module
+	written by: Aaron Bishop
+	description:  
+        This class is a wrapper for PDO to reduce boilerplate and provide a cleaner, more Perl DBI-like interface.
+    inputs:     GET/POST/PATH
+    output:     HTML Renderer
+*/
 
-use Fzb\Renderer;
-use Fzb\Inputs;
+namespace TestApp;
 
-$renderer = new Renderer();
+use Fzb;
 
+$renderer = new Fzb\Renderer();
 
-$inputs   = new Inputs([
+$inputs   = new Fzb\Inputs([
     '_path_scheme' => "year/month/day",
-]);
-
-$inputs->add_inputs([
-    'id' => [
-        'required' => true,
-        'type' => 'GET',
-        'validate' => FILTER_VALIDATE_INT,
-    ],
-    'email' => [
-        'required' => true,
-        'type' => 'POST',
-        'validate' => FILTER_VALIDATE_EMAIL,
-    ],
-    'text' => [
-        'required' => true,
-        'type' => 'POST',
-        'validate' => FILTER_SANITIZE_SPECIAL_CHARS,
-    ],
-    'bool_option' => [
-        'required' => true,
-        'type' => 'POST',
-        'validate' => FILTER_VALIDATE_BOOLEAN,
-    ],
-    'month' => [
-        'required' => true,
-        'type' => 'PATH'
-    ],
-    'year' => [
-        'required' => true,
-        'type' => 'PATH'
-    ],
-    'day' => [
-        'required' => true,
-        'type' => 'PATH'
-    ]    
-
+    'month'       => [ 'type' => 'PATH', 'required' => true ],
+    'year'        => [ 'type' => 'PATH', 'required' => true ],
+    'day'         => [ 'type' => 'PATH', 'required' => true ],
+    'id'          => [ 'type' => 'GET',  'required' => true, 'validate' => FILTER_VALIDATE_INT ],
+    'email'       => [ 'type' => 'POST', 'required' => true, 'validate' => FILTER_VALIDATE_EMAIL ],
+    'text'        => [ 'type' => 'POST', 'required' => true, 'validate' => FILTER_SANITIZE_SPECIAL_CHARS ],
+    'bool_option' => [ 'type' => 'POST', 'required' => false, 'validate' => FILTER_VALIDATE_BOOLEAN ],
 ]);
 
 $inputs['optional_thing'] = [
@@ -52,25 +31,17 @@ $inputs['optional_thing'] = [
     'type' => 'GET',
 ];
 
-
-$inputs['optional_thing2'] = [];
+$inputs['optional_thing2'] = null;
 
 try {
     $inputs->validate();
-} catch (\Fzb\InputValidationException $e) {
+} catch (Fzb\InputValidationException $e) {
     $renderer->assign('validation_error', true);
     $renderer->assign('required_failures', $e->required_failures);
     $renderer->assign('validation_failures', $e->validation_failures);
 } catch (Exception $e) {
     print("didn't catch it");
 }
-
-/*
-print("INPUTS OBJECT: ");
-print_r("<pre>");
-var_dump($inputs);
-print_r("</pre>");
-*/
 
 $renderer->assign('id', $inputs['id']);
 $renderer->assign('email', $inputs['email']);
