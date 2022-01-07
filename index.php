@@ -8,13 +8,11 @@
 */
 error_reporting(E_ALL);
 
-$pwd = dirname(__FILE__);
-
 // app specific initialization
-require_once($pwd."/appinit.php");
+require_once(__DIR__."/appinit.php");
 
 // class autoloader
-require_once($pwd."/autoload.php");
+require_once(__DIR__."/vendor/autoload.php");
 
 // global variables
 $router = new Fzb\Router(MODULES_DIR);

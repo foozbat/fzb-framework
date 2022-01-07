@@ -50,4 +50,9 @@ ALL DEFINED VARS:<br />
 <?php var_dump( get_defined_vars() ) ?>
 </pre>
 
+ALL DEFINED GLOBALS:<br />
+<pre>
+<?php var_dump( $_SERVER ) ?>
+</pre>
+
 <?php include("footer.template.php") ?>

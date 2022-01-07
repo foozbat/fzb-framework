@@ -14,6 +14,7 @@ namespace TestApp;
 use Fzb;
 
 $renderer = new Fzb\Renderer();
+$db = new Fzb\Database(['ini_file' => SETTINGS_DIR."/.settings.ini"]);
 
 $inputs   = new Fzb\Inputs([
     '_path_scheme' => "year/month/day",
@@ -39,8 +40,6 @@ try {
     $renderer->assign('validation_error', true);
     $renderer->assign('required_failures', $e->required_failures);
     $renderer->assign('validation_failures', $e->validation_failures);
-} catch (Exception $e) {
-    print("didn't catch it");
 }
 
 $renderer->assign('id', $inputs['id']);
@@ -54,3 +53,8 @@ $renderer->assign('day', $inputs['day']);
 $renderer->assign('year', $inputs['year']);
 
 $renderer->display("test");
+
+$db->selectrow_array();
+
+print "GLOBALS AFTER STATE RESTORE<pre>";
+print_r($GLOBALS);
