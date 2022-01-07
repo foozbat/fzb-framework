@@ -5,5 +5,6 @@ use Fzb\Renderer as Renderer;
 
 $renderer  = new Renderer();
 
-$renderer->assign('test', 'oh yeah');
+$renderer->assign('variable', 'Hello world!');
+
 $renderer->display('main');

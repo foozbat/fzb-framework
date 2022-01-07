@@ -1,5 +1,5 @@
 <?php include("header.template.php") ?>
 
-this is the main page <?= $test ?>
+<?= $variable ?>
 
 <?php include("footer.template.php") ?>
