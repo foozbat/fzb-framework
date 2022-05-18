@@ -1,4 +1,5 @@
 <?php
+
 namespace TestApp;
 
 use Fzb;
@@ -14,7 +15,7 @@ try {
         'database' => 'test'
     ]);*/
 
-    $db = new Fzb\Database(['ini_file' => SETTINGS_DIR."/.settings.ini"]);
+    $db = new Fzb\Database(ini_file: SETTINGS_DIR."/.settings.ini");
 } catch (Fzb\DatabaseConnectException $e) {
     die($e->getMessage());
 }

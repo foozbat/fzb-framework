@@ -18,7 +18,7 @@ require_once(__DIR__."/appinit.php");
 require_once(__DIR__."/vendor/autoload.php");
 
 // global variables
-$router = new Fzb\Router(MODULES_DIR);
+$router = new Fzb\Router();
 
 // load the specified module
 $router->route();

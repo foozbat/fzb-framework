@@ -1,5 +1,5 @@
 <?php
-//namespace TestApp;
+namespace TestApp;
 
 use Fzb\Renderer as Renderer;
 

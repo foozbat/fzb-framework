@@ -1,31 +1,22 @@
 <?php
-/* 
-	file:       test.module.php
-	type:       Module
-	written by: Aaron Bishop
-	description:  
-        This class is a wrapper for PDO to reduce boilerplate and provide a cleaner, more Perl DBI-like interface.
-    inputs:     GET/POST/PATH
-    output:     HTML Renderer
-*/
 
 namespace TestApp;
 
 use Fzb;
 
 $renderer = new Fzb\Renderer();
-$db = new Fzb\Database(['ini_file' => SETTINGS_DIR."/.settings.ini"]);
+$db = new Fzb\Database(ini_file: SETTINGS_DIR."/.settings.ini");
 
-$inputs   = new Fzb\Inputs([
-    '_path_scheme' => "year/month/day",
-    'month'       => [ 'type' => 'PATH', 'required' => true ],
-    'year'        => [ 'type' => 'PATH', 'required' => true ],
-    'day'         => [ 'type' => 'PATH', 'required' => true ],
-    'id'          => [ 'type' => 'GET',  'required' => true, 'validate' => FILTER_VALIDATE_INT ],
-    'email'       => [ 'type' => 'POST', 'required' => true, 'validate' => FILTER_VALIDATE_EMAIL ],
-    'text'        => [ 'type' => 'POST', 'required' => true, 'validate' => FILTER_SANITIZE_SPECIAL_CHARS ],
-    'bool_option' => [ 'type' => 'POST', 'required' => false, 'validate' => FILTER_VALIDATE_BOOLEAN ],
-]);
+$inputs = new Fzb\Inputs(
+    _path_scheme: "year/month/day",
+    month:        [ 'type' => 'PATH', 'required' => true ],
+    year:         [ 'type' => 'PATH', 'required' => true ],
+    day:          [ 'type' => 'PATH', 'required' => true ],
+    id:           [ 'type' => 'GET',  'required' => true, 'validate' => FILTER_VALIDATE_INT ],
+    email:        [ 'type' => 'POST', 'required' => true, 'validate' => FILTER_VALIDATE_EMAIL ],
+    text:         [ 'type' => 'POST', 'required' => true, 'validate' => FILTER_SANITIZE_SPECIAL_CHARS ],
+    bool_option:  [ 'type' => 'POST', 'required' => false, 'validate' => FILTER_VALIDATE_BOOLEAN ],
+);
 
 $inputs['optional_thing'] = [
     'required' => false,
@@ -54,7 +45,5 @@ $renderer->assign('year', $inputs['year']);
 
 $renderer->display("test");
 
-$db->selectrow_array();
-
-print "GLOBALS AFTER STATE RESTORE<pre>";
-print_r($GLOBALS);
+//print "GLOBALS AFTER STATE RESTORE<pre>";
+//print_r($GLOBALS);
