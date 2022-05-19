@@ -8,7 +8,6 @@ $renderer = new Fzb\Renderer();
 $db = new Fzb\Database(ini_file: SETTINGS_DIR."/.settings.ini");
 
 $inputs = new Fzb\Inputs(
-    _path_scheme: "year/month/day",
     month:        [ 'type' => 'PATH', 'required' => true ],
     year:         [ 'type' => 'PATH', 'required' => true ],
     day:          [ 'type' => 'PATH', 'required' => true ],
@@ -42,6 +41,8 @@ $renderer->assign('optional_thing', $inputs['optional_thing']);
 $renderer->assign('month', $inputs['month']);
 $renderer->assign('day', $inputs['day']);
 $renderer->assign('year', $inputs['year']);
+
+$renderer->assign('render_vars', "ASDF");
 
 $renderer->display("test");
 

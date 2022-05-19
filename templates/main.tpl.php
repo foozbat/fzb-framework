@@ -1,5 +1,5 @@
-<?php include("header.template.php") ?>
+<?php include("header.tpl.php") ?>
 
 <?= $variable ?>
 
-<?php include("footer.template.php") ?>
+<?php include("footer.tpl.php") ?>

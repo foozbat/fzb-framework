@@ -7,21 +7,22 @@
         HTML for test module
 */
 
-include("header.template.php") ?>
+include("header.tpl.php") ?>
 
 <?php if ($validation_error): ?>
     <?php if ($required_failures): ?>
-<b>Required fields missing:</b>
-<pre>
-<?php print_r($required_failures) ?>
-</pre>
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <b>Required fields missing:</b>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <pre><?php print_r($required_failures) ?></pre>
+        </div>
     <?php endif ?>
 
     <?php if($validation_failures): ?>
-<b>Input validation error:</b>
-<pre>
-<?php print_r($validation_failures) ?>
-</pre>
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <b>Input validation error:</b>
+            <pre><?php print_r($validation_failures) ?></pre>
+        </div>
     <?php endif ?>
 <?php endif ?>
 
@@ -55,4 +56,4 @@ ALL DEFINED GLOBALS:<br />
 <?php var_dump( $_SERVER ) ?>
 </pre>
 
-<?php include("footer.template.php") ?>
+<?php include("footer.tpl.php") ?>

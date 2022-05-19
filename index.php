@@ -17,6 +17,12 @@ require_once(__DIR__."/appinit.php");
 // class autoloader
 require_once(__DIR__."/vendor/autoload.php");
 
+set_exception_handler(function ($e) {
+	$renderer = new Fzb\Renderer();
+	$renderer->assign('exception', $e->getMessage());
+	$renderer->display('exception_message');
+});
+
 // global variables
 $router = new Fzb\Router();
 

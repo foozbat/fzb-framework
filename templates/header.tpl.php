@@ -19,8 +19,18 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
 -->
+  <link rel="stylesheet" href="<?= $_base_uri ?>/css/bootstrap.min.css">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#fafafa">
+
+  <script src="<?= $_base_uri ?>/js/bootstrap.min.js"></script>
 </head>
 
 <body>
+
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+  <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+  <span class="fs-4">FZB template</span>
+  </header>
+
+  <main>
