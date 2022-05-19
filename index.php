@@ -20,7 +20,7 @@ require_once(__DIR__."/vendor/autoload.php");
 set_exception_handler(function ($e) {
 	$renderer = new Fzb\Renderer();
 	$renderer->assign('exception', $e->getMessage());
-	$renderer->display('exception_message');
+	$renderer->display('exception');
 });
 
 // global variables
