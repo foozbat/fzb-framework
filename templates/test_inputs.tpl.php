@@ -10,7 +10,7 @@
 include("header.tpl.php") ?>
 
 <?php if ($input_required_error): ?>
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <b>Required fields missing:</b>
         <br /><br />
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -21,7 +21,7 @@ include("header.tpl.php") ?>
 <?php endif ?>
 
 <?php if($input_validation_error): ?>
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <b>Input validation error:</b>
         <br /><br />
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -73,7 +73,7 @@ include("header.tpl.php") ?>
         <tbody>
             <?php foreach ($inputs as $input_name => $input_value): ?>
             <tr>
-                <td scope="row"><?= $input_name ?></td>
+                <td><?= $input_name ?></td>
                 <td><?= $input_value ?></td>
             </tr>
             <?php endforeach ?>
