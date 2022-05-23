@@ -24,7 +24,7 @@ $inputs['optional_thing'] = [
 
 $inputs['optional_thing2'] = null;
 
-$renderer->assign_all($inputs->get_validation_failures());
+//$renderer->assign_all($inputs->get_validation_failures());
 
 $renderer->assign('inputs', $inputs);
 

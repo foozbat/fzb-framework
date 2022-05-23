@@ -23,13 +23,13 @@ $data = [
 ];
 
 print "AUTO QUERY 1<br/>";
-$db->auto_query("test", $data);
-$db->auto_query("test", $data);
-$db->auto_query("test", $data);
-$db->auto_query("test", $data);
-$db->auto_query("test", $data);
+$db->auto_insert_update("test", $data);
+$db->auto_insert_update("test", $data);
+$db->auto_insert_update("test", $data);
+$db->auto_insert_update("test", $data);
+$db->auto_insert_update("test", $data);
 print "AUTO QUERY 2<br/>";
-$db->auto_query("test", $data, "id", 1);
+$db->auto_insert_update("test", $data, "id", 1);
 
 
 print("prepared statment<br />");

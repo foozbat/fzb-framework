@@ -1,5 +1,3 @@
-<?php include("header.tpl.php") ?>
-
 <div class="alert alert-danger" role="alert">
 <b>Fatal Exception</b>
 <p>
@@ -9,5 +7,3 @@
 <p>
 <pre><?= $exception_trace ?></pre>
 </div>
-
-<?php include("footer.tpl.php") ?>
