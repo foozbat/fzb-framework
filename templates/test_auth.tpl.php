@@ -27,28 +27,24 @@
 
     <form class="row g-3" method="POST" novalidate>
         <div class="col-md-4">
-        <label for="username" class="form-label">Username:</label>
-        <input id="username" type="text" name="username" class="form-control is-invalid" value="<?= $inputs['username'] ?>" required>
-        <?php if ($input_required_error): ?>
-            <?php if (in_array("username", $input_required_failures)): ?>
+            <label for="username" class="form-label">Username:</label>
+            <input id="username" type="text" name="username" class="form-control <?php if ($username_is_missing): ?>is-invalid<?php endif ?>" value="<?= $username ?>" required>
+    
+            <?php if ($username_is_missing): ?>
             <div id="usernameFeedback" class="invalid-feedback is-invalid">
             Please enter a username.
             </div>
             <?php endif ?>
-        <?php endif ?>
-
         </div>
 
         <div class="col-md-4">
-        <label class="form-label">Password:</label>
-        <input type="password" name="password" class="form-control" value="" required>
-        <?php if ($input_required_error): ?>
-            <?php if (in_array('password', $input_required_failures)): ?>
+            <label class="form-label">Password:</label>
+            <input type="password" name="password" class="form-control <?php if ($password_is_missing): ?>is-invalid<?php endif ?>" value="" required>
+            <?php if ($password_is_missing): ?>
             <div class="invalid-feedback">
             Please enter your password.
             </div>
             <?php endif ?>
-        <?php endif ?>
         </div>
 
         <div class="col-12">

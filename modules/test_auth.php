@@ -12,8 +12,8 @@ $inputs   = new Fzb\Inputs(
     password: ['type' => 'POST', 'required' => true ]
 );
 
-if ($inputs->request_method() == 'POST') {
-    $renderer->assign_all($inputs->get_validation_failures());
+if ($inputs->is_post() ) {
+    $renderer->assign_inputs($inputs);
 }
 
 $renderer->display("test_auth");
