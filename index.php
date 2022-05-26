@@ -20,9 +20,9 @@ require_once(__DIR__."/vendor/autoload.php");
 set_exception_handler(function ($e) {
 	$renderer = new Fzb\Renderer();
 	$renderer->assign('exception_message', $e->getMessage());
-	$renderer->assign('exception_file', $e->getFile());
-	$renderer->assign('exception_line', $e->getLine());
-	$renderer->assign('exception_trace', $e->getTraceAsString());
+	$renderer->assign('exception_file',    $e->getFile());
+	$renderer->assign('exception_line',    $e->getLine());
+	$renderer->assign('exception_trace',   $e->getTraceAsString());
 	$renderer->display('exception');
 });
 
