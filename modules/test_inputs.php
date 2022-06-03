@@ -29,3 +29,4 @@ if ($page_input->is_post()) {
 
 $renderer->display("test_inputs");
 
+Fzb\myhelper();

@@ -27,6 +27,8 @@ set_exception_handler(function ($e) {
 });
 
 // global variables
+$config = new Fzb\Config(ini_file: CONFIG_DIR."/.config.ini");
+
 $router = new Fzb\Router();
 
 // load the specified module

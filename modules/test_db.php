@@ -6,8 +6,16 @@ use Fzb;
 
 $renderer = new Fzb\Renderer();
 
+//$db = new Fzb\Database(ini_file: CONFIG_DIR."/.config.ini");
+//$db = new Fzb\Database();
+$db = new Fzb\Database(
+    driver:   "mysql",
+    host:     "localhost",
+    username: "test",
+    password: "TESTtest1!",
+    database: "test"
+);
 
-$db = new Fzb\Database(ini_file: CONFIG_DIR."/.config.ini");
 
 /*
 for ($i=0; $i<10; $i++) {

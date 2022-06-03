@@ -10,7 +10,7 @@ class MyClass extends Fzb\DataObject
         //print "myclass constructed";
     }
 
-    public function do_something() {
-        $this->db->selectrow_array("SELECT * FROM test");
+    public function get_data() {
+        return $this->db->selectrow_array("SELECT * FROM test");
     }
 }
