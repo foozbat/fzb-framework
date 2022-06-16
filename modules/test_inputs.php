@@ -27,6 +27,12 @@ if ($page_input->is_post()) {
     $renderer->assign('form_input', $form_input);
 }
 
+$input2 = new Fzb\Input(...['one', 'two', 'three']);
+$renderer->assign_all($input2);
+
+$input3 = new Fzb\Input();
+$input3['four'] = null;
+
 $renderer->display("test_inputs");
 
 Fzb\myhelper();
