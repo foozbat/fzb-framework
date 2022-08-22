@@ -10,5 +10,8 @@ $renderer = new Fzb\Renderer();
 
 $obj = new MyClass();
 
+print("<pre>");
 
+print("GET DATA\n");
 print_r($obj->get_data());
+

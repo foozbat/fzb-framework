@@ -30,12 +30,20 @@ $data = [
     'zip' => rand(70000,79999)
 ];
 
+$data2 = [
+    'name' => 'Joe',
+    'city' => 'Dallas',
+    'state' => 'TX',
+    'zip' => rand(70000,79999),
+    'nothing' => 'nothing'
+];
+
 print "AUTO QUERY 1<br/>";
 $db->auto_insert_update("test", $data);
 $db->auto_insert_update("test", $data);
 $db->auto_insert_update("test", $data);
 $db->auto_insert_update("test", $data);
-$db->auto_insert_update("test", $data);
+//$db->auto_insert_update("test", $data2);
 print "AUTO QUERY 2<br/>";
 $db->auto_insert_update("test", $data, "id", 1);
 
