@@ -5,21 +5,20 @@ use Fzb;
 
 class MyClass extends Fzb\DataObject
 {
-    protected $__table__ = "test";
+    const __table__ = "test";
 
-    protected $name;
-    protected $city;
-    protected $state;
-    protected $zip;
+    public $name;
+    public $city;
+    public $state;
+    public $zip;
 
-    public function __construct() {
-        print "myclass constructed";
-
-        $this->test1 = 1;
-        $this->test2 = 2;
+    public function __construct(...$params)
+    {
+        parent::__construct(...$params);
     }
 
-    public function get_data() {
+    public function get_data()
+    {
         return $this->db()->selectrow_array("SELECT * FROM test");
     }
 }
