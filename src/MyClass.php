@@ -12,13 +12,4 @@ class MyClass extends Fzb\DataObject
     public $state;
     public $zip;
 
-    public function __construct(...$params)
-    {
-        parent::__construct(...$params);
-    }
-
-    public function get_data()
-    {
-        return $this->db()->selectrow_array("SELECT * FROM test");
-    }
 }
