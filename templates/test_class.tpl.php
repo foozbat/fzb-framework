@@ -1,5 +1,7 @@
-RENDERED
-
+RENDERED OBJECTS
+<p>
 <?php foreach ($all as $item): ?>
-    <?php print($item->name) ?><br />
+    Name:  <?= $item->name ?><br />
+    Location:  <?= $item->city ?>, <?= $item->state ?> <?= $item->zip ?><br />
+    <br />
 <?php endforeach ?>
