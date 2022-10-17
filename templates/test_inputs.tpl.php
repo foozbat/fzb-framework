@@ -3,22 +3,14 @@
 <?php if ($input_required_error): ?>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <b>Required fields missing</b>
-        <br /><br />
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        <?php foreach ($input_required_failures as $field): ?>
-            <?= $field ?><br />
-        <?php endforeach ?>
     </div>
 <?php endif ?>
 
 <?php if($input_validation_error): ?>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <b>Input validation error</b>
-        <br /><br />
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        <?php foreach ($input_validation_failures as $field): ?>
-            <?= $field ?><br />
-        <?php endforeach ?>
     </div>
 <?php endif ?>
 
@@ -74,7 +66,6 @@
 
 <div class="container">
     <h3>Page Input</h3>
-
     <table class="table table-striped">
         <thead>
             <tr>

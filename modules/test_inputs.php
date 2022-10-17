@@ -6,6 +6,8 @@ use Fzb;
 
 $renderer = new Fzb\Renderer();
 
+// define inputs with required and validate options set
+// page requires path options /year/month/day?id=1
 $page_input = new Fzb\Input(
     year:  [ 'type' => 'PATH', 'required' => true ],
     month: [ 'type' => 'PATH', 'required' => true ],
@@ -17,6 +19,7 @@ $renderer->assign_all($page_input);
 $renderer->assign('page_input', $page_input);
 
 if ($page_input->is_post()) {
+    // define a second set of inputs for when form post is received
     $form_input = new Fzb\Input(
         text:        [ 'type' => 'POST', 'required' => true, /*'validate' => FILTER_SANITIZE_SPECIAL_CHARS*/ ],
         email:       [ 'type' => 'POST', 'required' => true, 'validate' => FILTER_VALIDATE_EMAIL ],
@@ -27,9 +30,11 @@ if ($page_input->is_post()) {
     $renderer->assign('form_input', $form_input);
 }
 
+// define inputs as array unpack with no validation
 $input2 = new Fzb\Input(...['one', 'two', 'three']);
 $renderer->assign_all($input2);
 
+// define input using arrayaccess
 $input3 = new Fzb\Input();
 $input3['four'] = null;
 
