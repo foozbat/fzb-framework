@@ -4,10 +4,13 @@ namespace TestApp;
 
 use Fzb;
 
-$renderer = new Fzb\Renderer();
+/* 
+// test case config file
+$db = new Fzb\Database(ini_file: CONFIG_DIR."/.config.ini");
+*/
 
-//$db = new Fzb\Database(ini_file: CONFIG_DIR."/.config.ini");
-//$db = new Fzb\Database();
+/* 
+//test case mysql manual constructor
 $db = new Fzb\Database(
     driver:   "mysql",
     host:     "localhost",
@@ -15,7 +18,19 @@ $db = new Fzb\Database(
     password: "TESTtest1!",
     database: "test"
 );
+*/
 
+print("<pre>");
+print_r(\PDO::getAvailableDrivers());
+
+// test case postgres
+$db = new Fzb\Database(
+    driver:   "pgsql",
+    host:     "localhost",
+    username: "postgres",
+    password: "test",
+    database: "test"
+);
 
 /*
 for ($i=0; $i<10; $i++) {
@@ -38,21 +53,25 @@ $data2 = [
     'nothing' => 'nothing'
 ];
 
+
+// test auto_insert_update
 print "AUTO QUERY 1<br/>";
 $db->auto_insert_update("test", $data);
 $db->auto_insert_update("test", $data);
 $db->auto_insert_update("test", $data);
 $db->auto_insert_update("test", $data);
-//$db->auto_insert_update("test", $data2);
+
 print "AUTO QUERY 2<br/>";
-$db->auto_insert_update("test", $data, "id", 1);
+$db->auto_insert_update("test", array('city' => 'Atlanta', 'state' => 'GA'), "id", $db->last_insert_id());
 
 
+// test prepared statements
 print("prepared statment<br />");
 $db->prepare("SELECT * FROM test");
 $db->prepare("SELECT * FROM test LIMIT 5");
 $db->execute();
 
+// test fetch and select
 print("fetchrow_array()<br />");
 print_r($db->fetchrow_array());
 
@@ -74,9 +93,5 @@ print_r($db->selectrow_assoc("SELECT * FROM test"));
 print("<br /><br />selectcol_array()<br />");
 print_r($db->selectcol_array("SELECT name FROM test"));
 
-
-
-
+// cleanup
 $db->query("DELETE FROM test");
-
-//print("<br /><br />QUERY: $query");
