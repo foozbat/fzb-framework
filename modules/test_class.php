@@ -27,6 +27,11 @@ $obj2 = new MyClass(
 $obj2->save();
 var_dump($obj2);
 
+$obj2->city = "Here";
+$obj2->save();
+
+var_dump($obj2);
+
 // get existing object by instatiation
 $obj3 = new MyClass(id: 1);
 var_dump($obj3);
@@ -36,7 +41,7 @@ $by_id = MyClass::get_by(id: 350);
 var_dump($by_id);
 
 // get multiple existing objects via static method
-$by_multi = MyClass::get_by(city: "Somewhere", zip: 99999);
+$by_multi = MyClass::get_by(city: "Here", state: "TX");
 var_dump($by_multi);
 
 print("</pre>");
@@ -45,3 +50,5 @@ print("</pre>");
 $all = MyClass::get_all();
 $renderer->assign('all', $all);
 $renderer->display('test_class');
+
+$db->query("DELETE FROM test");

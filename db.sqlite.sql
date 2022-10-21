@@ -1,5 +1,5 @@
 CREATE TABLE test (
-  id integer PRIMARY KEY AUTO_INCREMENT,
+  id integer PRIMARY KEY AUTOINCREMENT,
   last_updated timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   name varchar(255) DEFAULT NULL,
