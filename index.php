@@ -12,10 +12,14 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // app specific initialization
-require_once(__DIR__."/appinit.php");
+require_once __DIR__."/appinit.php";
 
 // class autoloader
-require_once(__DIR__."/vendor/autoload.php");
+require_once __DIR__."/vendor/autoload.php";
+
+set_error_handler(function ($severity, $message, $filename, $lineno) {
+    throw new ErrorException($message, 0, $severity, $filename, $lineno);
+});
 
 set_exception_handler(function ($e) {
 	$renderer = new Fzb\Renderer();
@@ -23,12 +27,13 @@ set_exception_handler(function ($e) {
 	$renderer->assign('exception_file',    $e->getFile());
 	$renderer->assign('exception_line',    $e->getLine());
 	$renderer->assign('exception_trace',   $e->getTraceAsString());
-	$renderer->display('exception');
+	$renderer->display('exception.tpl.php');
+	exit;
 });
 
 // global variables
 $config = new Fzb\Config(ini_file: CONFIG_DIR."/.config.ini");
 $router = new Fzb\Router();
 
-// load the specified module
-$router->route();
+// load the specified controllers
+require_once $router->get_controller_path();

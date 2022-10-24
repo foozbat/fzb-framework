@@ -16,4 +16,4 @@ if ($input->is_post() ) {
     $renderer->assign('input', $input);
 }
 
-$renderer->display("test_auth");
+$renderer->display("test_auth.tpl.php");

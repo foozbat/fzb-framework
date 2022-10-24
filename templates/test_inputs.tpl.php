@@ -20,9 +20,9 @@
     <form class="row g-3" action="?id=<?= $id ?>" method="POST">
         <div class="col-md-4">
         <label class="form-label">Text:</label>
-        <input type="text" name="text" class="form-control <?php if ($text_is_missing): ?>is-invalid<?php endif ?>" value="<?= $text ?>">
+        <input type="text" name="text" class="form-control <?php if (@$text_is_missing): ?>is-invalid<?php endif ?>" value="<?= $text ?>">
 
-            <?php if ($text_is_missing): ?>
+            <?php if (@$text_is_missing): ?>
                 <div id="textFeedback" class="invalid-feedback is-invalid">
                 Please enter some text.
                 </div>

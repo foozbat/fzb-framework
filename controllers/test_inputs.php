@@ -38,6 +38,6 @@ $renderer->assign_all($input2);
 $input3 = new Fzb\Input();
 $input3['four'] = null;
 
-$renderer->display("test_inputs");
+$renderer->display("test_inputs.tpl.php");
 
 Fzb\myhelper();

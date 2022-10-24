@@ -49,6 +49,6 @@ print("</pre>");
 // get all records as an array of objects and assign to renderer
 $all = MyClass::get_all();
 $renderer->assign('all', $all);
-$renderer->display('test_class');
+$renderer->display('test_class.tpl.php');
 
 $db->query("DELETE FROM test");

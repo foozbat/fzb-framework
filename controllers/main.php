@@ -7,4 +7,4 @@ $renderer  = new Renderer();
 
 $renderer->assign('variable', 'Hello world!');
 
-$renderer->display('main');
+$renderer->display('main.tpl.php');
