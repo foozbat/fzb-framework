@@ -3,8 +3,7 @@
 	file:         index.php
 	type:         Main Program
 	written by:   Aaron Bishop
-	date:         6/18/2019
-	description:  This is the main entry point for the application.  All common initialization is done here and this script functions as the main controller.
+	description:  This is the main entry point for the application.
 */
 
 ini_set('display_errors', 1);
@@ -17,23 +16,26 @@ require_once __DIR__."/appinit.php";
 // class autoloader
 require_once __DIR__."/vendor/autoload.php";
 
-set_error_handler(function ($severity, $message, $filename, $lineno) {
-    throw new ErrorException($message, 0, $severity, $filename, $lineno);
-});
-
 set_exception_handler(function ($e) {
-	$renderer = new Fzb\Renderer();
-	$renderer->assign('exception_message', $e->getMessage());
-	$renderer->assign('exception_file',    $e->getFile());
-	$renderer->assign('exception_line',    $e->getLine());
-	$renderer->assign('exception_trace',   $e->getTraceAsString());
-	$renderer->display('exception.tpl.php');
+	print("<pre>");
+	print($e);
+	print("</pre>");
 	exit;
 });
 
-// global variables
-$config = new Fzb\Config(ini_file: CONFIG_DIR."/.config.ini");
+$config = new Fzb\Config(ini_file: CONFIG_DIR.'/.config.ini');
+
+// router using controllers
+$router = new Fzb\Router(default_controller: 'index.php');
+require_once $router->get_controller();
+
+/*
+// router in a single index.php file
 $router = new Fzb\Router();
 
-// load the specified controllers
-require_once $router->get_controller_path();
+$router->get('/', function () {
+	print("index");
+});
+*/
+
+$router->route();

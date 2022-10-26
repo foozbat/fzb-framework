@@ -1,10 +1,13 @@
 <?php
 
-$router = Fzb\get_router();
-print("<pre>");
-print($router->get_route());
-print_r($router->get_all_routes());
+$router->use_controller_prefix();
 
-?>
-<br/>
-ADMIN PAGE
+$router->get('/', function () {
+    print("I'm an admin.");
+});
+
+$router->get('/sub', function () {
+    print("I'm the sub.");
+});
+
+$router->route();
