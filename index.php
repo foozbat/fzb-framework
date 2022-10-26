@@ -36,6 +36,6 @@ $router = new Fzb\Router();
 $router->get('/', function () {
 	print("index");
 });
-*/
 
 $router->route();
+*/

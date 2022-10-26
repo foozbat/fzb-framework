@@ -3,7 +3,7 @@ namespace TestApp;
 
 use Fzb;
 
-class MyClass extends Fzb\DataObject
+class MyClass extends Fzb\Model
 {
     const __table__ = "test";
 

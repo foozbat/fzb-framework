@@ -15,6 +15,8 @@ print("<pre>");
 
 // new blank object
 $obj1 = new MyClass();
+
+print("New blank class\n");
 var_dump($obj1);
 
 // new object with data to insert
@@ -24,25 +26,44 @@ $obj2 = new MyClass(
     state: "TX",
     zip: rand(10000, 99999)
 );
-$obj2->save();
-var_dump($obj2);
+$saved = $obj2->save();
 
+print("new MyClass with data\n");
+var_dump($obj2);
+print("saved: $saved");
+print("\n\n");
+
+// update it with new data
 $obj2->city = "Here";
-$obj2->save();
+$saved = $obj2->save();
+
+print("update city=Here\n");
+print("saved: $saved");
+print("\n\n");
 
 var_dump($obj2);
+print("\n\n");
 
 // get existing object by instatiation
 $obj3 = new MyClass(id: 1);
+
+print("new MyClass(id: 1)\n");
 var_dump($obj3);
+print("\n\n");
 
 // get existing object via static method
 $by_id = MyClass::get_by(id: 350);
+
+print("get_by: id=350\n");
 var_dump($by_id);
+print("\n\n");
 
 // get multiple existing objects via static method
 $by_multi = MyClass::get_by(city: "Here", state: "TX");
+
+print("get_by() city=Here, state=TX\n");
 var_dump($by_multi);
+print("\n");
 
 print("</pre>");
 
