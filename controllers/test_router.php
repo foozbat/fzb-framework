@@ -18,7 +18,7 @@ $router->get('/test_router/test1', function () {
 $router->get(
     '/test_router/test2',
     '/test_router/test2/{var}',
-    function ($var) {
+    function ($var=1) {
         print("I'm test2\n");
         print("received: var1=$var");
 });
