@@ -6,7 +6,8 @@
 *.ini
 vendor/
 composer.lock
-data/
+.phpunit*
+phpunit
 
 # User-specific files
 *.suo

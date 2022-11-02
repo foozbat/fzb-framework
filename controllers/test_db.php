@@ -20,6 +20,10 @@ $db = new Fzb\Database(
 );
 */
 
+define ('DB_POSTGRES', 100);
+define ('DB_MYSQL', 200);
+
+
 print("<pre>");
 print_r(\PDO::getAvailableDrivers());
 
@@ -29,8 +33,26 @@ $db = new Fzb\Database(
     host:     "localhost",
     username: "postgres",
     password: "test",
-    database: "test"
+    database: "test",
+    id: DB_POSTGRES
 );
+
+$db2 = new Fzb\Database(
+    driver:   "mysql",
+    host:     "localhost",
+    username: "test",
+    password: "TESTtest1!",
+    database: "test",
+    id: DB_MYSQL
+);
+
+$the_postgres = Fzb\Database::get_instance(DB_POSTGRES);
+$the_mysql = Fzb\Database::get_instance(DB_MYSQL);
+
+print "db == db2: " . ($db === $db2) . "\n";
+print "db == the_postgres: " . ($db === $the_postgres) . "\n";
+print "db2 == the_mysql: " . ($db2 === $the_mysql) . "\n";
+
 
 /*
 for ($i=0; $i<10; $i++) {
