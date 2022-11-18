@@ -6,8 +6,6 @@ use Fzb;
 
 $redis = new Fzb\Redis();
 
-print("<pre>");
-
 print("test: ");
 var_dump($redis->test());
 print("\n");
@@ -17,10 +15,10 @@ $redis->set("blah", "bloo\nbloo");
 $redis->set("bleh", "blarg\r\nblarg");
 $redis->set("long", file_get_contents(APP_DIR."/test.txt"));
 
-print("getting foo: \"");
+print("getting foo: ");
 var_dump($redis->get("foo"));
 
-print("getting long: \"");
+print("getting long: ");
 var_dump($redis->get("long"));
 
 print("get bleh: \n");
