@@ -14,7 +14,6 @@ $router->get('/test_router/test1', function () {
     print("I'm test1");
 });
 
-
 $router->get(
     '/test_router/test2',
     '/test_router/test2/{var}',
