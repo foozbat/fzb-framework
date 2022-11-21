@@ -2,8 +2,6 @@
 
 use PHPUnit\Framework\TestCase;
 
-use Fzb;
-
 final class RouterTest extends TestCase
 {
     private static $router;

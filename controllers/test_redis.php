@@ -4,7 +4,7 @@ namespace MyApp;
 
 use Fzb;
 
-$redis = new Fzb\Redis();
+$redis = new Fzb\Redis(host: 'localhost');
 
 print("test: ");
 var_dump($redis->test());
@@ -26,10 +26,41 @@ $ret = $redis->get("bleh");
 var_dump($ret);
 print("\n\n");
 
-print("hgetall:\n");
-$ret = $redis->cmd("hgetall", "user:123");
+print("hset: \n");
+$data = [
+    'username' => 'blah',
+    'name' => 'somebody',
+    'place' => 'somewhere',
+    'activity' => 'nothing',
+    'count' => 256
+];
+$ret = $redis->hset('user:1', $data);
 var_dump($ret);
 print("\n\n");
+
+print("hget:\n");
+$ret = $redis->hget('user:1', 'username');
+var_dump($ret);
+
+print("hgetall:\n");
+$ret = $redis->hgetall('user:1');
+var_dump($ret);
+
+print("hdel\n");
+$ret = $redis->hdel('user:1', 'activity');
+$after = $redis->hgetall('user:1');
+print("  returns\n");
+var_dump($ret);
+print("  after\n");
+var_dump($after);
+
+print("hdelall\n");
+$ret = $redis->hdelall('user:1');
+$after = $redis->hgetall('user:1');
+print("  returns\n");
+var_dump($ret);
+print("  after\n");
+var_dump($after);
 
 $cmd = "*0\r\n";
 var_dump($redis->parse_response($cmd));
@@ -58,6 +89,10 @@ var_dump($redis->parse_response($cmd));
 $cmd = "*4\r\n*-1\r\n*0\r\n*0\r\n*0\r\n";
 var_dump($redis->parse_response($cmd));
 
+/*
 print("<br/><br/><br/>command:\n");
 var_dump($redis->cmd("command"));
 print("\n\n");
+*/
+
+$redis->cmd("FLUSHDB");
