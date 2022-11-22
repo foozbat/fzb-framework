@@ -43,6 +43,7 @@ $router->use_controller_prefix();
 
 $router->get('/renderer', function () use ($renderer) {
     $renderer->assign('path', '/test_router/renderer');
+    $renderer->assign('post_path', '/test_router/rcvpost/1');
     $renderer->display("test_router.tpl.php");
 });
 

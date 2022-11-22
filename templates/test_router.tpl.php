@@ -2,6 +2,6 @@ TEST ROUTES
 
 <?= $path ?>
 
-<form action="/fzb-framework/test_router/rcvpost/blah" method="POST">
+<form action="<?= $post_path ?>" method="POST">
     <button type="submit">click me</button>
 </form>
