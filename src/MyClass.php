@@ -12,4 +12,8 @@ class MyClass extends Fzb\Model
     public $state;
     public $zip;
 
+    public function test($one, $two, $three)
+    {
+        return "blah <b> $one $two $three </b>";
+    }
 }

@@ -6,6 +6,9 @@ use Fzb;
 
 $renderer = new Fzb\Renderer();
 
+$bm = new Fzb\Benchmark('test_router');
+$bm->start();
+
 $router->get("/test_router", function () {
     print("I'm base");
 });
@@ -68,7 +71,21 @@ $router->add(
     }
 );
 
+$router->get('inputs/{one}/{two}', function(int $one, $two) {
+    $input = new Fzb\Input(
+        one: $one,
+        two: $two,
+        three: ['type' => 'get', 'validate' => FILTER_VALIDATE_INT]
+    );
+
+    var_dump($input);
+});
+
 $router->route();
+
+$bm->end();
+
+Fzb\Benchmark::show();
 
 // code that always gets executed after
 //

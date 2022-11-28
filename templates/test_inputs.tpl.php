@@ -107,8 +107,7 @@
 </div>
 <?php endif ?>
 
-<?php print $text ?>
-<?php echo $text ?>
-<?= $text ?>
+
+<?php Fzb\Benchmark::show() ?>
 
 <?php include("footer.tpl.php") ?>
