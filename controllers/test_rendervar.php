@@ -23,6 +23,8 @@ print($blah->unsafe."<br />");
 
 $robj = new Fzb\RenderVar($obj2);
 
+// test iterable 
+
 foreach ($robj as $r) {
     print($r->name."<br/>");
     print($r->name->unsafe."<br/>");
@@ -38,11 +40,18 @@ $input = new Fzb\Input(
 
 $rinput = new Fzb\RenderVar($input);
 
-print("input['one']: ".$input['one']."<br />");
-print("one santized: ".$rinput['one']."<br />");
-print("one unsafe: ".$rinput['one']->unsafe."<br />");
+var_dump(is_iterable($input));
+var_dump(is_array($input));
 
-var_dump($rinput);
+foreach ($rinput as $name => $value) {
+    print("$name santized: ".$value."<br />");
+    print("$name unsafe: ".$value->unsafe."<br />");
+}
+
+$arr = ['<b>something</b>', 'something else', '<i>oh yeah</i>'];
+$rarr = new Fzb\RenderVar($arr);
+print($arr[0].$arr[1].$arr[2]."<br />");
+print($rarr[0].$rarr[1].$rarr[2]."<br />");
 
 $bm->end();
 Fzb\Benchmark::show();

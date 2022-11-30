@@ -31,7 +31,10 @@ set_exception_handler(function ($e) {
 $config = new Fzb\Config(ini_file: CONFIG_DIR.'/.config.ini');
 
 // router using controllers
-$router = new Fzb\Router(default_controller: 'index.php');
+$router = new Fzb\Router(
+	controllers_dir: __DIR__."/controllers", 
+	default_controller: 'index.php'
+);
 require_once $router->get_controller();
 
 /*

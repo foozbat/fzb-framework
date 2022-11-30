@@ -32,9 +32,11 @@ $page_input = new Fzb\Input(
 );
 $bm2->end();
 
+//var_dump($page_input);
+
 $renderer = new Fzb\Renderer();
 
-//$renderer->assign_all($page_input);
+$renderer->assign_all($page_input);
 $renderer->assign('page_input', $page_input);
 
 if ($page_input->is_post()) {
@@ -56,9 +58,13 @@ if ($page_input->is_post()) {
 $input2 = new Fzb\Input(...['one', 'two', 'three']);
 $renderer->assign_all($input2);
 
+//var_dump($input2);
+
 // define input using arrayaccess
 $input3 = new Fzb\Input();
 $input3['four'] = null;
+
+//var_dump($input3);
 
 $bm1->end();
 
