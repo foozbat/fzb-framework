@@ -40,9 +40,6 @@ $input = new Fzb\Input(
 
 $rinput = new Fzb\RenderVar($input);
 
-var_dump(is_iterable($input));
-var_dump(is_array($input));
-
 foreach ($rinput as $name => $value) {
     print("$name santized: ".$value."<br />");
     print("$name unsafe: ".$value->unsafe."<br />");

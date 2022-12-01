@@ -13,7 +13,7 @@ $input   = new Fzb\Input(
 );
 
 if ($input->is_post() ) {
-    $renderer->assign('input', $input);
+    $renderer->set('input', $input);
 }
 
 $renderer->display("test_auth.tpl.php");

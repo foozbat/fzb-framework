@@ -36,8 +36,8 @@ $bm2->end();
 
 $renderer = new Fzb\Renderer();
 
-$renderer->assign_all($page_input);
-$renderer->assign('page_input', $page_input);
+$renderer->set_all($page_input);
+$renderer->set('page_input', $page_input);
 
 if ($page_input->is_post()) {
     // define a second set of inputs for when form post is received
@@ -50,13 +50,13 @@ if ($page_input->is_post()) {
     );
     $bm3->end();
 
-    $renderer->assign_all($form_input);
-    $renderer->assign('form_input', $form_input);
+    $renderer->set_all($form_input);
+    $renderer->set('form_input', $form_input);
 }
 
 // define inputs as array unpack with no validation
 $input2 = new Fzb\Input(...['one', 'two', 'three']);
-$renderer->assign_all($input2);
+$renderer->set_all($input2);
 
 //var_dump($input2);
 
