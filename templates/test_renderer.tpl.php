@@ -40,14 +40,21 @@
     <br />
 
     unsafe by row:<br />
+    <?php foreach ($unsafe_2d_array as $row): ?>
+        <?php foreach ($row->unsafe as $col): ?>
+            <?= $col ?>
+        <?php endforeach; ?><br />
+    <?php endforeach; ?>
+    <br />
+
+    unsafe by root:<br />
     <?php foreach ($unsafe_2d_array->unsafe as $row): ?>
         <?php foreach ($row as $col): ?>
             <?= $col ?>
         <?php endforeach; ?><br />
     <?php endforeach; ?>
-
     <br />
-    
+
     iterating a single value (shouldn't work, but don't want error): <br />
     <?php foreach ($iterate_me as $me): ?>
         <?= $me ?>
