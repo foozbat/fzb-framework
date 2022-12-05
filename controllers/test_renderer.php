@@ -21,6 +21,7 @@ $unsafe_2d_array = [
 $iterate_me = 'me';
 
 $renderer->set('array', $array);
+$renderer->set('unsafe_arr', $unsafe_arr);
 $renderer->set('unsafe_content1', $unsafe_content1);
 $renderer->set('unsafe_content2', $unsafe_content2);
 $renderer->set('unsafe_2d_array', $unsafe_2d_array);

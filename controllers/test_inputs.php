@@ -50,6 +50,9 @@ if ($page_input->is_post()) {
     );
     $bm3->end();
 
+    $bool = $form_input["bool_option"]->value;
+    var_dump( $bool);
+
     $renderer->set_all($form_input);
     $renderer->set('form_input', $form_input);
 }
@@ -69,3 +72,4 @@ $input3['four'] = null;
 $bm1->end();
 
 $renderer->display("test_inputs.tpl.php");
+

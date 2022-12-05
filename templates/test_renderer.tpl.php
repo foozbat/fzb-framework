@@ -11,22 +11,31 @@
     ?>
 
     <?php foreach ($array as $val): ?>
-        <?= $val ?><br />
+        safe: <?= $val ?><br />
+        unsafe: <?= $val->unsafe ?><br />
     <?php endforeach; ?>
 
     <br />
 
+    <?php foreach ($unsafe_arr as $val): ?>
+        safe: <?= $val ?><br />
+        unsafe: <?= $val->unsafe ?><br />
+    <?php endforeach; ?>
+
     safe: <?= $unsafe_content1 ?><br />
-    unsafe: <?= $unsafe_content2->unsafe ?>
+    unsafe: <?= $unsafe_content->unsafe ?><br />
+    
+    safe: <?= $unsafe_content2 ?><br />
+    unsafe: <?= $unsafe_content2->unsafe ?> <br />
     
     <br />
-    <br />
 
-    safe:<br />
+    <br />
     <?php foreach ($unsafe_2d_array as $row): ?>
         <?php foreach ($row as $col): ?>
-            <?= $col ?>
-        <?php endforeach; ?><br />
+            safe: <?= $col ?><br />
+            unsafe: <?= $col->unsafe ?><br />
+        <?php endforeach; ?>
     <?php endforeach; ?>
 
     <br />
@@ -35,22 +44,6 @@
     <?php foreach ($unsafe_2d_array as $row): ?>
         <?php foreach ($row as $col): ?>
             <?= $col->unsafe ?>
-        <?php endforeach; ?><br />
-    <?php endforeach; ?>
-    <br />
-
-    unsafe by row:<br />
-    <?php foreach ($unsafe_2d_array as $row): ?>
-        <?php foreach ($row->unsafe as $col): ?>
-            <?= $col ?>
-        <?php endforeach; ?><br />
-    <?php endforeach; ?>
-    <br />
-
-    unsafe by root:<br />
-    <?php foreach ($unsafe_2d_array->unsafe as $row): ?>
-        <?php foreach ($row as $col): ?>
-            <?= $col ?>
         <?php endforeach; ?><br />
     <?php endforeach; ?>
     <br />
