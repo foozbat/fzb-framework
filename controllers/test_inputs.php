@@ -24,12 +24,7 @@ $blarg = new Fzb\Input();
 // define inputs with required and validate options set
 // page requires path options /year/month/day?id=1
 $bm2->start();
-$page_input = new Fzb\Input(
-//    year:  [ 'type' => 'PATH', 'required' => true ],
-//    month: [ 'type' => 'PATH', 'required' => true ],
-//    day:   [ 'type' => 'PATH', 'required' => true ],
-    id:    [ 'type' => 'GET', 'required' => true ],
-);
+$page_input = new Fzb\Input(id: 'get|required|post');
 $bm2->end();
 
 //var_dump($page_input);
@@ -43,15 +38,21 @@ if ($page_input->is_post()) {
     // define a second set of inputs for when form post is received
     $bm3 = new Fzb\Benchmark('form_input');
     $bm3->start();
-    $form_input = new Fzb\Input(
-        text:        [ 'type' => 'POST', 'required' => true, /*'validate' => FILTER_SANITIZE_SPECIAL_CHARS*/ ],
+    /*$form_input = new Fzb\Input(
+        text:        [ 'type' => 'POST', 'required' => true ],
         email:       [ 'type' => 'POST', 'required' => true, 'validate' => FILTER_VALIDATE_EMAIL ],
         bool_option: [ 'type' => 'POST', 'required' => true, 'validate' => FILTER_VALIDATE_BOOLEAN ],
+    );*/
+
+    $form_input = new Fzb\Input(
+        text:        ['post' ],
+        email:       ['post', 'required', 'validate:email' ],
+        bool_option: 'post|required|validate:boolean'
     );
+
     $bm3->end();
 
     $bool = $form_input["bool_option"]->value;
-    var_dump( $bool);
 
     $renderer->set_all($form_input);
     $renderer->set('form_input', $form_input);
