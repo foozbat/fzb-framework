@@ -4,27 +4,15 @@ namespace TestApp;
 
 use Fzb;
 
-$bm_r = new Fzb\Benchmark('render1');
-$bm_r->start();
-$r = new Fzb\Renderer();
-$bm_r->end();
-
-$bm_r2 = new Fzb\Benchmark('render2');
-$bm_r2->start();
-$r2 = new Fzb\Renderer();
-$bm_r2->end();
-
 $bm1 = new Fzb\Benchmark('test_inputs');
 $bm2 = new Fzb\Benchmark('page_input');
-
-
 
 $bm1->start();
 $blarg = new Fzb\Input();
 // define inputs with required and validate options set
 // page requires path options /year/month/day?id=1
 $bm2->start();
-$page_input = new Fzb\Input(id: 'get|required|post');
+$page_input = new Fzb\Input(id: 'get required');
 $bm2->end();
 
 //var_dump($page_input);
@@ -45,9 +33,9 @@ if ($page_input->is_post()) {
     );*/
 
     $form_input = new Fzb\Input(
-        text:        ['post' ],
-        email:       ['post', 'required', 'validate:email' ],
-        bool_option: 'post|required|validate:boolean'
+        text:  ['post'],
+        email: ['post', 'required', 'validate:email'],
+        bool_option: 'post required validate:bool'
     );
 
     $bm3->end();
