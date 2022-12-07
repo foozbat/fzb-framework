@@ -25,6 +25,8 @@ Note: "fzb-framework" is a work-in-progress collection of test cases.  In the fu
 3. cd to project folder
 4. composer update
 5. Enable nginx url-rewriting by adding the following to your project's nginx configuration:
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
+```
+location / {
+    try_files $uri $uri/ /index.php?$query_string;
+}
+```
