@@ -14,12 +14,7 @@ error_reporting(E_ALL);
 require_once __DIR__."/appinit.php";
 
 // class autoloader
-require_once __DIR__."/vendor/fzb/fzb/src/Benchmark.php";
-
-$bm_a = new Fzb\Benchmark('autoload');
-$bm_a->start();
 require_once __DIR__."/vendor/autoload.php";
-$bm_a->end();
 
 set_exception_handler(function ($e) {
 	print("<pre>");
