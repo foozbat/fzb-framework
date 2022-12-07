@@ -40,7 +40,10 @@ if ($page_input->is_post()) {
 
     $bm3->end();
 
-    $bool = $form_input["bool_option"]->value;
+    var_dump( (bool) (string) $form_input['bool_option'] );
+
+    //var_dump($form_input["bool_option"]);
+    //var_dump($form_input["bool_option"]->value);
 
     $renderer->set_all($form_input);
     $renderer->set('form_input', $form_input);
@@ -56,9 +59,9 @@ $renderer->set_all($input2);
 $input3 = new Fzb\Input();
 $input3['four'] = null;
 
-//var_dump($input3);
-
 $bm1->end();
+
+//var_dump($input3);
 
 $renderer->display("test_inputs.tpl.php");
 

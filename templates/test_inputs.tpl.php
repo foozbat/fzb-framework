@@ -1,5 +1,10 @@
 <?php include("header.tpl.php") ?>
 
+<?php 
+    $bm = new Fzb\Benchmark('render template'); 
+    $bm->start();
+?>
+
 <?php if ($input_required_error): ?>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <b>Required fields missing</b>
@@ -31,7 +36,7 @@
 
         <div class="col-md-4">
             <label class="form-label">Email:</label>
-            <input type="text" name="email" class="form-control <?php if ($email->is_missing || $email->is_invalid): ?>is-invalid<?php endif ?>" value="<?= $email ?>">
+            <input type="text" name="email" class="form-control <?php if ($email->is_missing || $email->is_invalid): ?>is-invalid<?php endif ?>" value="<?= $email->submitted_value ?>">
             <?php if ($email->is_missing): ?>
                 <div class="invalid-feedback is-invalid">
                 Please enter your email.
@@ -107,6 +112,7 @@
 </div>
 <?php endif ?>
 
+<?php $bm->end() ?>
 
 <?php Fzb\Benchmark::show() ?>
 
