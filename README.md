@@ -14,13 +14,13 @@ Note: "fzb-framework" is a work-in-progress collection of test cases.  In the fu
 5. php -S localhost:8000
 
 **Installation (Apache, linux)**
-1. cd to your web root (typically /var/www/html)
+1. cd to your web root
 2. git clone https://github.com/foozbat/fzb-framework.git into webroot or desired subfolder
 3. cd to project folder
 4. composer update
 
 **Installation (nginx, linux)**
-1. cd to your web root (typically /var/www/html)
+1. cd to your web root
 2. git clone https://github.com/foozbat/fzb-framework.git into webroot or desired subfolder
 3. cd to project folder
 4. composer update
