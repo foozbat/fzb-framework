@@ -6,6 +6,8 @@ use Fzb;
 
 $redis = new Fzb\Redis(host: 'localhost');
 
+print("Redis implementation is currently buggy<br><br>");
+
 print("test: ");
 var_dump($redis->test());
 print("\n");
