@@ -28,8 +28,6 @@ set_exception_handler(function ($e) {
 	exit;
 });
 
-$config = new Fzb\Config(ini_file: CONFIG_DIR.'/.config.ini');
-
 // router using controllers
 $router = new Fzb\Router(
 	controllers_dir: __DIR__."/controllers", 
