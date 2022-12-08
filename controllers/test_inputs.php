@@ -40,7 +40,7 @@ if ($page_input->is_post()) {
 
     $bm3->end();
 
-    var_dump( (bool) (string) $form_input['bool_option'] );
+    //var_dump( (bool) (string) $form_input['bool_option'] );
 
     //var_dump($form_input["bool_option"]);
     //var_dump($form_input["bool_option"]->value);
