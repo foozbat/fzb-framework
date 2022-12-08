@@ -2,9 +2,11 @@
 
 <h3>Controllers:</h3>
 
+<?php var_dump($_base_path); ?>
+
 <div class="list-group">
 <?php foreach ($controllers as $path): ?>
-    <a href="/<?= $_base_path ?><?= $path ?>" class="list-group-item list-group-item-action"><?= $path ?></a>
+    <a href="<?= $_base_path ?><?= $path ?>" class="list-group-item list-group-item-action"><?= $path ?></a>
 <?php endforeach; ?>
 </div>
 
