@@ -33,9 +33,9 @@ foreach ($robj as $r) {
 }
 
 $input = new Fzb\Input(
-    one:   [ 'type' => 'GET', 'required' => true ],
-    two:   [ 'type' => 'GET', 'required' => true ],
-    three: [ 'type' => 'GET', 'required' => true ],
+    one:   'get required',
+    two:   'get required',
+    three: 'get required',
 );
 
 $rinput = new Fzb\RenderVar($input);

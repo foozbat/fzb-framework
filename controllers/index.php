@@ -5,6 +5,9 @@ use Fzb\Renderer as Renderer;
 
 $renderer  = new Renderer();
 
-$renderer->set('variable', 'Hello world!');
+$controllers = $router->get_all_controllers();
+asort($controllers);
 
-$renderer->display('main.tpl.php');
+$renderer->set('controllers', $controllers);
+
+$renderer->display('index.tpl.php');

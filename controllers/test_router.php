@@ -9,8 +9,12 @@ $renderer = new Fzb\Renderer();
 $bm = new Fzb\Benchmark('test_router');
 $bm->start();
 
-$router->get("/test_router", function () {
-    print("I'm base");
+$router->get("/test_router", function () use ($renderer, $router) {
+    $routes = $router->get_routes();
+    ksort($routes);
+
+    $renderer->set('routes', $routes);
+    $renderer->display('test_router.tpl.php');
 });
 
 $router->get('/test_router/test1', function () {
@@ -31,10 +35,6 @@ $router->get(
     function ($var1, $var2='hellohello') {
         print("I'm test3\n");
         print("received: var1=$var1, var2=$var2");
-});
-
-$router->get('/test_router/sendpost', function () use ($renderer) {
-    $renderer->display('test_router.tpl.php');
 });
 
 $router->post('/test_router/rcvpost/{var}', function($var) {
@@ -81,11 +81,11 @@ $router->get('inputs/{one}/{two}', function(int $one, $two) {
     var_dump($input);
 });
 
-$router->route();
-
 $bm->end();
 
-Fzb\Benchmark::show();
+$router->route();
+
+
 
 // code that always gets executed after
 //
