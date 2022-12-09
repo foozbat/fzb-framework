@@ -1,7 +1,7 @@
   </main>
 
   <footer class="pt-5 my-5 text-muted center">
-    FZB Framework WIP Demo &middot; &copy; 2022
+    <?php echo "FZB Framework WIP Demo" ?> &middot; &copy; 2022
   </footer>
 </div>
 
