@@ -1,1 +1,1 @@
-admin/sub/test.php
+subdir/subsubdir/test.php

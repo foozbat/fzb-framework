@@ -3,7 +3,7 @@
 $router->use_controller_prefix();
 
 $router->get('/', function () {
-    print("I'm an admin.");
+    print("I'm test.");
 });
 
 $router->get('/sub', function () {
