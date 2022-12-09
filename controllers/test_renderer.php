@@ -24,5 +24,5 @@ $renderer->set('unsafe_content1', $unsafe_content1);
 $renderer->set('unsafe_content2', $unsafe_content2);
 $renderer->set('unsafe_2d_array', $unsafe_2d_array);
 
-$renderer->display('test_renderer.tpl.php');
+$renderer->show('test_renderer.tpl.php');
 

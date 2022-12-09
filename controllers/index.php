@@ -10,4 +10,4 @@ asort($controllers);
 
 $renderer->set('controllers', $controllers);
 
-$renderer->display('index.tpl.php');
+$renderer->show('index.tpl.php');

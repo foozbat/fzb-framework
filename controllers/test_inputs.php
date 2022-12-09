@@ -49,5 +49,5 @@ $input3['four'] = null;
 
 $bm1->end();
 
-$renderer->display("test_inputs.tpl.php");
+$renderer->show("test_inputs.tpl.php");
 

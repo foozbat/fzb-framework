@@ -14,7 +14,7 @@ $router->get("/test_router", function () use ($renderer, $router) {
     ksort($routes);
 
     $renderer->set('routes', $routes);
-    $renderer->display('test_router.tpl.php');
+    $renderer->show('test_router.tpl.php');
 });
 
 $router->get('/test_router/test1', function () {
@@ -47,7 +47,7 @@ $router->use_controller_prefix();
 $router->get('/renderer', function () use ($renderer) {
     $renderer->set('path', '/test_router/renderer');
     $renderer->set('post_path', '/test_router/rcvpost/1');
-    $renderer->display("test_router.tpl.php");
+    $renderer->show("test_router.tpl.php");
 });
 
 // test using no leading /
