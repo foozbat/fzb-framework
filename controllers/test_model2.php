@@ -42,3 +42,5 @@ Fzb\Database::set_active_db(DB_MYSQL);
 // reset the primary key and save to mysql
 $obj1->id = null;
 $obj1->save();
+
+print "no output, check both MySQL and Postgres DB to verify the object was saved to both DB's.";

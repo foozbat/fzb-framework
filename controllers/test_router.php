@@ -71,15 +71,14 @@ $router->add(
     }
 );
 
-$router->get('inputs/{one}/{two}', function(int $one, $two) {
-    /*$input = new Fzb\Input(
-        one: $one,
-        two: $two,
-        three: 'get validate:int'
+$router->get('inputs/{one}/{two}', function() {
+    $input = new Fzb\Input(
+        one: 'path required validate:int',
+        two: 'path required validate:float',
+        three: 'get'
     );
 
-    var_dump($input);*/
-    print("path vars as Fzb\Input not implemented yet");
+    var_dump($input);
 });
 
 $bm->end();
