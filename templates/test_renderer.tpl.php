@@ -1,62 +1,56 @@
-<html>
-  <head>
+<?php include("header.tpl.php") ?>
 
-  </head>
+<?php 
+  $bm = new Fzb\Benchmark('rendering'); 
+  $bm->start();
+?>
 
-  <body>
+<div class="card mt-3">
+  <div class="card-body">
+    <h5>Strings with unsafe content</h5>
+    safe: <?= $unsafe_content1 ?><br />
+    unsafe: <?= $unsafe_content1->unsafe ?><br />
 
-    <?php 
-      $bm = new Fzb\Benchmark('rendering'); 
-      $bm->start();
-    ?>
+    safe: <?= $unsafe_content2 ?><br />
+    unsafe: <?= $unsafe_content2->unsafe ?> <br />
+  </div>
+</div>
 
+<div class="card mt-3">
+  <div class="card-body">
+    <h5>Array with safe strings</h5>
     <?php foreach ($array as $val): ?>
-        safe: <?= $val ?><br />
-        unsafe: <?= $val->unsafe ?><br />
+      safe: <?= $val ?><br />
+      unsafe: <?= $val->unsafe ?><br />
     <?php endforeach; ?>
 
-    <br />
-
+    <h5 class="mt-3">Array with unsafe strings</h5>
     <?php foreach ($unsafe_arr as $val): ?>
         safe: <?= $val ?><br />
         unsafe: <?= $val->unsafe ?><br />
-    <?php endforeach; ?>
+    <?php endforeach; ?>    
+  </div>
+</div>
 
-    safe: <?= $unsafe_content1 ?><br />
-    unsafe: <?= $unsafe_content->unsafe ?><br />
-    
-    safe: <?= $unsafe_content2 ?><br />
-    unsafe: <?= $unsafe_content2->unsafe ?> <br />
-    
-    <br />
-
-    <br />
+<div class="card mt-3">
+  <div class="card-body">
+    <h5>2D Arrays</h5>
     <?php foreach ($unsafe_2d_array as $row): ?>
         <?php foreach ($row as $col): ?>
             safe: <?= $col ?><br />
             unsafe: <?= $col->unsafe ?><br />
         <?php endforeach; ?>
     <?php endforeach; ?>
+  </div>
+</div>
 
-    <br />
-
-    unsafe by element:<br />
-    <?php foreach ($unsafe_2d_array as $row): ?>
-        <?php foreach ($row as $col): ?>
-            <?= $col->unsafe ?>
-        <?php endforeach; ?><br />
-    <?php endforeach; ?>
-    <br />
-
-    iterating a single value (shouldn't work, but don't want error): <br />
-    <?php foreach ($iterate_me as $me): ?>
-        <?= $me ?>
-    <?php endforeach; ?>
-
+<div class="card mt-3">
+  <div class="card-body">
     <?php 
       $bm->end();
       $bm->show();
     ?>
+  </div>
+</div>
 
-  </body>
-</html>
+<?php include("footer.tpl.php") ?>

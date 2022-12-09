@@ -22,6 +22,10 @@
     </div>
 <?php endif ?>
 
+<div class="alert alert-danger">
+    Auth module not implemented yet
+</div>
+
 <div class="container">
     <h3>Login</h3>
 
