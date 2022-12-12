@@ -2,11 +2,11 @@
 
 namespace TestApp;
 
-use Fzb;
+use Fzb\Input as Input;
 
-$renderer = new Fzb\Renderer();
+$renderer = new \Fzb\Renderer();
 
-$bm = new Fzb\Benchmark('test_router');
+$bm = new \Fzb\Benchmark('test_router');
 $bm->start();
 
 $router->get("/test_router", function () use ($renderer, $router) {
@@ -25,7 +25,7 @@ $router->get(
     '/test_router/test2',
     '/test_router/test2/{var1}',
     function () {
-        $in = new Fzb\Input(var1: 'path required default:1');
+        $in = new Input(var1: 'path required default:1');
 
         print("I'm test2\n");
         print("received: var1=".$in['var1']);
@@ -35,7 +35,7 @@ $router->get(
     '/test_router/test3/{var1}/something',
     '/test_router/test3/{var1}/something/{var2}', 
     function () {
-        $in = new Fzb\Input(
+        $in = new Input(
             var1: 'path',
             var2: 'path default:hello'
         );
@@ -74,13 +74,13 @@ $router->add(
         'add/{var1}'
     ],
     func: function () {
-        $in = new Fzb\Input(var1: 'path default:hello');
+        $in = new Input(var1: 'path default:hello');
         print("I'm add: ".$in['var1']);
     }
 );
 
 $router->get('inputs/{one}/{two}', function() {
-    $input = new Fzb\Input(
+    $input = new Input(
         one: 'path required validate:int',
         two: 'path required validate:float',
         three: 'get'
