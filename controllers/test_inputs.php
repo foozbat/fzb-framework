@@ -11,7 +11,7 @@ $bm1->start();
 
 // single get input
 $bm2->start();
-$page_input = new Fzb\Input(id: 'get');
+$page_input = new Fzb\Input(id: "get default:''");
 $bm2->end();
 
 //var_dump($page_input);
@@ -28,7 +28,7 @@ if ($page_input->is_post()) {
 
     // define post inputs as array or space-delimited string
     $form_input = new Fzb\Input(
-        text:  ['post'],
+        text:  'post',
         email: ['post', 'required', 'validate:email'],
         bool_option: 'post required validate:bool'
     );

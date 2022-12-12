@@ -23,21 +23,28 @@ $router->get('/test_router/test1', function () {
 
 $router->get(
     '/test_router/test2',
-    '/test_router/test2/{var}',
-    function ($var=1) {
+    '/test_router/test2/{var1}',
+    function () {
+        $in = new Fzb\Input(var1: 'path required default:1');
+
         print("I'm test2\n");
-        print("received: var1=$var");
+        print("received: var1=".$in['var1']);
 });
 
 $router->get(
     '/test_router/test3/{var1}/something',
     '/test_router/test3/{var1}/something/{var2}', 
-    function ($var1, $var2='hellohello') {
+    function () {
+        $in = new Fzb\Input(
+            var1: 'path',
+            var2: 'path default:hello'
+        );
+
         print("I'm test3\n");
-        print("received: var1=$var1, var2=$var2");
+        print("received: var1=".$in['var1']. ", var2=". $in['var2']);
 });
 
-$router->post('/test_router/rcvpost/{var}', function($var) {
+$router->post('/test_router/rcvpost/{var}', function() {
     print("got the post");
 });
 
@@ -64,10 +71,11 @@ $router->add(
     method: ['GET', 'POST'],
     path: [
         'add',
-        'add/{var}'
+        'add/{var1}'
     ],
-    func: function ($var=null) {
-        print("I'm add: $var");
+    func: function () {
+        $in = new Fzb\Input(var1: 'path default:hello');
+        print("I'm add: ".$in['var1']);
     }
 );
 
