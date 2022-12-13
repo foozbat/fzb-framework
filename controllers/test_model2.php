@@ -7,9 +7,9 @@ namespace TestApp;
 define ('DB_POSTGRES', 100);
 define ('DB_MYSQL', 200);
 
-use Fzb;
+use Fzb\Database;
 
-$db = new Fzb\Database(
+$db = new Database(
     driver:   "pgsql",
     host:     "localhost",
     username: "postgres",
@@ -18,7 +18,7 @@ $db = new Fzb\Database(
     id: DB_POSTGRES
 );
 
-$db2 = new Fzb\Database(
+$db2 = new Database(
     driver:   "mysql",
     host:     "localhost",
     username: "test",
@@ -37,7 +37,7 @@ $obj1 = new MyClass(
 // save the object to postgres
 $obj1->save();
 
-Fzb\Database::set_active_db(DB_MYSQL);
+Database::set_active_db(DB_MYSQL);
 
 // reset the primary key and save to mysql
 $obj1->id = null;

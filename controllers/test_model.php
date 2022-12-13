@@ -5,11 +5,11 @@
 
 namespace TestApp;
 
-use Fzb;
+use Fzb\Database, Fzb\Renderer;
 
-$db  = new Fzb\Database(ini_file: CONFIG_DIR."/.config.ini");
+$db  = new Database(ini_file: CONFIG_DIR."/.config.ini");
 //$db2 = new Fzb\Database(driver: 'sqlite', file: DATA_DIR."/test.db");
-$renderer = new Fzb\Renderer();
+$renderer = new Renderer();
 
 print("<pre>");
 

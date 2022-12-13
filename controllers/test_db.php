@@ -2,7 +2,7 @@
 
 namespace TestApp;
 
-use Fzb;
+use Fzb\Database;
 
 /* 
 // test case config file
@@ -28,7 +28,7 @@ print("<pre>");
 print_r(\PDO::getAvailableDrivers());
 
 // test case postgres
-$db = new Fzb\Database(
+$db = new Database(
     driver:   "pgsql",
     host:     "localhost",
     username: "postgres",
@@ -37,7 +37,7 @@ $db = new Fzb\Database(
     id: DB_POSTGRES
 );
 
-$db2 = new Fzb\Database(
+$db2 = new Database(
     driver:   "mysql",
     host:     "localhost",
     username: "test",
@@ -46,8 +46,8 @@ $db2 = new Fzb\Database(
     id: DB_MYSQL
 );
 
-$the_postgres = Fzb\Database::get_instance(DB_POSTGRES);
-$the_mysql = Fzb\Database::get_instance(DB_MYSQL);
+$the_postgres = Database::get_instance(DB_POSTGRES);
+$the_mysql    = Database::get_instance(DB_MYSQL);
 
 print "db == db2: " . ($db === $db2) . "\n";
 print "db == the_postgres: " . ($db === $the_postgres) . "\n";

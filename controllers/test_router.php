@@ -2,11 +2,11 @@
 
 namespace TestApp;
 
-use Fzb\Input as Input;
+use Fzb\Input, Fzb\Renderer, Fzb\Benchmark;
 
-$renderer = new \Fzb\Renderer();
+$renderer = new Renderer();
 
-$bm = new \Fzb\Benchmark('test_router');
+$bm = new Benchmark('test_router');
 $bm->start();
 
 $router->get("/test_router", function () use ($renderer, $router) {

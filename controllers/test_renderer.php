@@ -1,6 +1,10 @@
 <?php
 
-$renderer = new Fzb\Renderer();
+namespace TestApp;
+
+use Fzb\Renderer;
+
+$renderer = new Renderer();
 
 $array = ['one', 'two', 'three'];
 

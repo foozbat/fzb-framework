@@ -2,12 +2,12 @@
 
 namespace TestApp;
 
-use Fzb;
+use Fzb\Database, Fzb\Auth, Fzb\Renderer, Fzb\Input;
 
-$db       = new Fzb\Database(ini_file: CONFIG_DIR."/.config.ini");
-$auth     = new Fzb\Auth();
-$renderer = new Fzb\Renderer();
-$input   = new Fzb\Input(
+$db       = new Database(ini_file: CONFIG_DIR."/.config.ini");
+$auth     = new Auth();
+$renderer = new Renderer();
+$input    = new Input(
     username: 'post required',
     password: 'post required'
 );

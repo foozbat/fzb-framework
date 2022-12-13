@@ -1,10 +1,10 @@
 <?php
 
-namespace MyApp;
+namespace TestApp;
 
-use Fzb;
+use Fzb\Redis;
 
-$redis = new Fzb\Redis(host: 'localhost');
+$redis = new Redis(host: 'localhost');
 
 print("Redis implementation is currently buggy<br><br>");
 
